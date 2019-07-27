@@ -45,9 +45,10 @@ class TodoList
       @todos = []
     end
   
-    def add(newItem)
+    def <<(newItem)
         (newItem.class == Todo) ? (@todos.push(newItem)) : (raise TypeError.new("Can only add Todo objects"))
     end
+    alias_method :add, :<<
   
     def size
         @todos.length
@@ -98,8 +99,9 @@ class TodoList
     end
 
     def to_s
-        p "---- #{@title} ---- "
-        @todos.each {|t| p t.to_s}
+      text = "---- #{title} ----\n"
+      text << @todos.map(&:to_s).join("\n")
+      text
     end
 
     def find_by_title(title)
@@ -154,10 +156,8 @@ class TodoList
   list.add(todo3)
   
   todo1.done!
-  
-  # puts list.find_by_title("Buy milk")
+ 
   puts list.all_done
 
-  # results = list.select { |todo| todo.done? }    # you need to implement this method
-  
-  # puts results.inspect
+
+  list.to_s

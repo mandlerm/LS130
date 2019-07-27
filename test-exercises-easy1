@@ -1,0 +1,33 @@
+# 2
+
+# def compute(arg)
+#     return "Does not compute." unless block_given?
+#     yield(arg)
+# end
+
+
+# p compute { 5 + 3 } == 8
+# p compute { 'a' + 'b' } == 'ab'
+# p compute == 'Does not compute.'
+
+
+# p computer(3) { |n| 5 + 3 + n} 
+
+
+#3
+
+def missing(arr) 
+    lowest = arr.first
+    highest = arr.last
+    newarr = []
+
+    (lowest..highest) {|n| newarr << n if !arr.include?(n)}
+    newarr
+
+end
+
+
+p missing([-3, -2, 1, 5]) == [-1, 0, 2, 3, 4]
+p missing([1, 2, 3, 4]) == []
+p missing([1, 5]) == [2, 3, 4]
+p missing([6]) == []
