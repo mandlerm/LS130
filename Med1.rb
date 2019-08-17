@@ -32,14 +32,27 @@
 ####### 2 Text Analyzer - Sandwich Code ########
 class TextAnalyzer
     def process
-      # your implementation
+      file = File.open("testfile.txt")
+      puts yield(file)
+      file.close
     end
   end
   
   analyzer = TextAnalyzer.new
-  analyzer.process { # your implementation }
-  analyzer.process { # your implementation }
-  analyzer.process { # your implementation }
+  analyzer.process { |f|
+            paragraphs = f.read.split(/\n\n/).length
+            "#{paragraphs} paragraphs"
+        }
+  analyzer.process { |f| 
+             lines = f.readlines.map(&:chomp)
+            "#{lines.count} lines"
+        }
+
+  analyzer.process { |f| 
+            w = f.read.split(" ").count
+            "#{w} words"
+    
+        }
 
 
 
