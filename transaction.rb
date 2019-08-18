@@ -8,7 +8,7 @@ class Transaction
       @amount_paid = 0
     end
   
-    def prompt_for_payment(input: $stdin, output: $stdout)
+    def prompt_for_payment(input: $stdin)
       loop do
         output.puts "You owe $#{item_cost}.\nHow much are you paying?"
         @amount_paid = input.gets.chomp.to_f
